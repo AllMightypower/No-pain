@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Editor</title>
+  <!-- Include Ace Editor stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.css" integrity="sha512-Cb8UW9bcax2hqkXU6/X/4eYO1SaV2EwXwq2HPO6wYxQupx3PytBc2LzX6N+AF4oW4eKD3T6Gm9CNnH3ic/UTNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    #editor {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="editor">// Write your code here...</div>
+  <button onclick="runCode()">Run</button>
+  <div id="output"></div>
+
+  <!-- Include Ace Editor script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" integrity="sha512-90FybueJ6i0ZENtuZJczg+8WJ2EGajP4RZGxMj6Qs3h6R6T1znV2zWcmlnNlB3c+1fEp6eQ3DyTnBdON0FjVoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    // Initialize Ace Editor
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai"); // Set editor theme
+    editor.session.setMode("ace/mode/javascript"); // Set editor mode
+
+    function runCode() {
+      var code = editor.getValue(); // Get code from editor
+      var output = document.getElementById("output");
+      
+      try {
+        // Execute code here
+        var result = eval(code);
+        output.innerText = result;
+      } catch (error) {
+        output.innerText = error.message;
+      }
+    }
+  </script>
+</body>
+</html>
